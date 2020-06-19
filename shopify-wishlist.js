@@ -50,8 +50,12 @@ var getImageName = function() {
         let products = storageProducts.filter(product => product.productHandle !== handle );
 
         localStorage.setItem('products', JSON.stringify(products));
+	      
+        $('#' + handle).fadeOut();
 
-        location.reload();
+        setTimeout(function(){
+          $('#' + handle).remove();
+        }, 1000);
 
       } else {
 
@@ -134,7 +138,7 @@ $(document).ready(function() {
           }
 
           $('#wishlist-here2').append(
-            '<li class="grid__item grid__item--collection-template small--one-half medium-up--one-quarter content"><div class="grid-view-item grid-view-item--sold-out product-card text-center"><a class="grid-view-item__link grid-view-item__image-container full-width-link" href="' + product.url + '"><span class="visually-hidden">' + product.title + '</span></a><div class="product-card__image-with-placeholder-wrapper" data-image-with-placeholder-wrapper=""><div id="ProductCardImageWrapper-collection-template-5047126818953" class="grid-view-item__image-wrapper product-card__image-wrapper js"><div style="padding-top:100.0%;"><img id="ProductCardImage-collection-template-5047126818953" class="grid-view-item__image" alt="" src="' + product.featured_image + '"></div></div><div class="placeholder-background placeholder-background--animation hide" data-image-placeholder=""></div></div>  <div class="price__vendor price__vendor--listing"><dt><span class="visually-hidden">Vendor</span></dt><dd style="margin: auto;">' + product.vendor + '</dd></div><div class="inner"><div class="grid-view-item__title product-card__title" aria-hidden="true">' + product.title + '</div><dl class="price price--listing"><div class="price__regular"><dt><span class="visually-hidden visually-hidden--inline">Regular price</span></dt><dd><span class="price-item price-item--regular">$' + (product.price/100).toFixed(2) + '</span></dd></div></dl></div></div><form method="post" action="/cart/add"><input type="hidden" name="id" value="' + varianceId + '" /><input class="hide" min="1" type="number" id="quantity" name="quantity" value="1"/><input type="submit" value="' + btnLabel + '" class="btn" style="width: 100%;"' + disabled + ' /></form><a class="btn removeStorage text-center" data-product="' + product.handle + '"><span style="font-size: larger;" data-product="' + product.handle + '">&#8553;</span><span data-product="' + product.handle + '">&ensp;REMOVE</span></a></li>'
+            '<li id="' + product.handle + '" class="grid__item grid__item--collection-template small--one-half medium-up--one-quarter content"><div class="grid-view-item grid-view-item--sold-out product-card text-center"><a class="grid-view-item__link grid-view-item__image-container full-width-link" href="' + product.url + '"><span class="visually-hidden">' + product.title + '</span></a><div class="product-card__image-with-placeholder-wrapper" data-image-with-placeholder-wrapper=""><div id="ProductCardImageWrapper-collection-template-5047126818953" class="grid-view-item__image-wrapper product-card__image-wrapper js"><div style="padding-top:100.0%;"><img id="ProductCardImage-collection-template-5047126818953" class="grid-view-item__image" alt="" src="' + product.featured_image + '"></div></div><div class="placeholder-background placeholder-background--animation hide" data-image-placeholder=""></div></div>  <div class="price__vendor price__vendor--listing"><dt><span class="visually-hidden">Vendor</span></dt><dd style="margin: auto;">' + product.vendor + '</dd></div><div class="inner"><div class="grid-view-item__title product-card__title" aria-hidden="true">' + product.title + '</div><dl class="price price--listing"><div class="price__regular"><dt><span class="visually-hidden visually-hidden--inline">Regular price</span></dt><dd><span class="price-item price-item--regular">$' + (product.price/100).toFixed(2) + '</span></dd></div></dl></div></div><form method="post" action="/cart/add"><input type="hidden" name="id" value="' + varianceId + '" /><input class="hide" min="1" type="number" id="quantity" name="quantity" value="1"/><input type="submit" value="' + btnLabel + '" class="btn" style="width: 100%;"' + disabled + ' /></form><a class="btn removeStorage text-center" data-product="' + product.handle + '"><span style="font-size: larger;" data-product="' + product.handle + '">&#8553;</span><span data-product="' + product.handle + '">&ensp;REMOVE</span></a></li>'
           );
 
         });
