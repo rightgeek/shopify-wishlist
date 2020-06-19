@@ -1,0 +1,16 @@
+<!---Add this in your section/product-template.liquid--->
+
+{% if section.settings.wishlist %}
+<div id="js-wish-list" class="js-wish-list text-center" style="margin-bottom: 30px;">
+<input hidden="" type="text" id="productHandle" value="{{ product.handle }}" name="{{ product.handle }}">
+<a onclick="upDateStorage()" class="btn flexx flex-center" style="background-color: transparent;color: #3a3a3a;width: 100%;font-weight: 600;">{% include 'rgeek-icons' with 'wishlist' %}<span>&ensp;{{ 'Add to wishlist' | upcase }}</span></a>
+</div>
+{% endif %}
+
+
+{
+  "type": "checkbox",
+  "id": "wishlist",
+  "label": "Wishlist",
+  "default": true
+}
